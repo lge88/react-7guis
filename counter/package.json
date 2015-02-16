@@ -1,0 +1,18 @@
+{
+  "name": "react-7gui-counter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "counter.js",
+  "scripts": {
+    "start": "watchify -t reactify -o build.js -v -d .& serve",
+    "clean": "rm build.js"
+  },
+  "dependencies": {
+    "flux": "^2.0.1",
+    "react": "^0.12.2",
+    "object-assign": "^2.0.0"
+  },
+  "devDependencies": {
+    "reactify": "^1.0.0"
+  }
+}
