@@ -2,6 +2,8 @@ var React = require('react');
 var TempStore = require('../stores/TempStore');
 var TempActions = require('../actions/TempActions');
 
+var LIGHT_BLUE = 'rgb(0, 197, 255)';
+
 var Temp = React.createClass({
   shouldComponentUpdate: function(nextProps) {
     return parseFloat(nextProps.value) !== parseFloat(this.props.value) ||
@@ -10,18 +12,40 @@ var Temp = React.createClass({
   render: function() {
     var value = this.props.value;
     var isValid = this.props.isValid;
+
     var containerStyle = {
-      display: 'inline-block'
+      display: 'inline-block',
+      fontSize: '14px',
+      fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif'
     };
-    var inputStyle = {};
+    var inputStyle = {
+      padding: '5px',
+      textAlign: 'center',
+      margin: '5px',
+      borderRadius: '2px',
+      borderStyle: 'solid',
+      borderWidth: '1px',
+      borderColor: LIGHT_BLUE,
+      color: LIGHT_BLUE,
+      fontSize: 'inherit',
+      width: '70px',
+      outline: 'none'
+    };
+    var unitStyle = {
+      color: LIGHT_BLUE
+    };
     if (!isValid) {
       inputStyle.borderStyle = 'solid';
       inputStyle.borderColor = 'red';
+      inputStyle.color = 'red';
     };
     return (
         <div style={containerStyle}>
-          <input style={inputStyle} type="text" value={value} onChange={this.props.onChange} />
-          <span>{this.props.unit}</span>
+          <input style={inputStyle} type="text"
+            value={value}
+            onChange={this.props.onChange}
+          />
+          <span style={unitStyle}>{this.props.unit}</span>
         </div>
     );
   }
@@ -94,10 +118,14 @@ var TempConverter = React.createClass({
   render: function() {
     var isTCValid = this.state.isTCValid;
     var isTFValid = this.state.isTFValid;
+    var equalSignStyle = {
+      color: LIGHT_BLUE, margin: '20px',
+      fontSize: '40px', fontWeight: 500
+    };
     return (
         <div>
           <Temp value={this.state.tc} isValid={isTCValid} onChange={this._handleUpdateTC} unit="Celsius"/>
-          <span>{'='}</span>
+          <span style={equalSignStyle}>{'='}</span>
           <Temp value={this.state.tf} isValid={isTFValid} onChange={this._handleUpdateTF} unit="Fahrenheit"/>
         </div>
     );
