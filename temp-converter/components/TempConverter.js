@@ -16,7 +16,7 @@ var Temp = React.createClass({
     var containerStyle = {
       display: 'inline-block',
       fontSize: '14px',
-      fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif'
+      fontFamily: 'Helvetica, Arial, sans-serif'
     };
     var inputStyle = {
       padding: '5px',
@@ -29,10 +29,13 @@ var Temp = React.createClass({
       color: LIGHT_BLUE,
       fontSize: 'inherit',
       width: '70px',
-      outline: 'none'
+      outline: 'none',
+      fontWeight: 100
     };
     var unitStyle = {
-      color: LIGHT_BLUE
+      color: LIGHT_BLUE,
+      fontSize: 'inherit',
+      fontWeight: 100
     };
     if (!isValid) {
       inputStyle.borderStyle = 'solid';
@@ -122,11 +125,13 @@ var TempConverter = React.createClass({
       color: LIGHT_BLUE, margin: '20px',
       fontSize: '40px', fontWeight: 500
     };
+    var tc = this.state.tc;
+    var tf = this.state.tf;
     return (
         <div>
-          <Temp value={this.state.tc} isValid={isTCValid} onChange={this._handleUpdateTC} unit="Celsius"/>
+          <Temp value={tc} isValid={isTCValid} onChange={this._handleUpdateTC} unit="Celsius"/>
           <span style={equalSignStyle}>{'='}</span>
-          <Temp value={this.state.tf} isValid={isTFValid} onChange={this._handleUpdateTF} unit="Fahrenheit"/>
+          <Temp value={tf} isValid={isTFValid} onChange={this._handleUpdateTF} unit="Fahrenheit"/>
         </div>
     );
   }

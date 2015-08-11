@@ -110,12 +110,16 @@ var CounterButton = React.createClass({
       borderWidth: '1px'
     };
 
+    var handles = {
+      onClick: this.props.onClick,
+      onMouseEnter: this.handleMouseEnter,
+      onMouseLeave: this.handleMouseLeave
+    };
+
     return (
         <button
-          style={buttonStyle}
-          onClick={this.props.onClick}
-          onMouseEnter={this.handleMouseEnter}
-          onMouseLeave={this.handleMouseLeave}>
+          {...handles}
+          style={buttonStyle}>
           {this.props.label}
         </button>
     );
@@ -226,7 +230,7 @@ var CounterApp = React.createClass({
 });
 
 function render() {
-  React.render(<CounterApp/>, document.getElementById('content'));
+  window.app = React.render(<CounterApp/>, document.getElementById('content'));
 }
 
 render();
